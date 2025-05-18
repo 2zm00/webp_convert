@@ -83,11 +83,10 @@ class WebPConverterPro:
             # 일반 이미지 처리
             else:
                 if img.mode in ('RGBA', 'LA'):
-                    background = Image.new('RGB', img.size, (255,255,255))
-                    background.paste(img, mask=img.split()[-1])
-                    img = background
                 
-                img.save(self.output_path, 'webp', quality=85)
+                    img.save(self.output_path, 'webp', quality=85, lossless=True)
+                else:
+                    img.save(self.output_path, 'webp', quality=85)
             
             messagebox.showinfo("성공", f"변환 완료!\n{self.output_path}")
             
